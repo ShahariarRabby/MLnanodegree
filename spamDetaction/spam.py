@@ -14,7 +14,7 @@ number of rows and columns using 'shape'.
 """
 
 df['label'] = df.label.map({'ham': 0, 'spam': 1})
-#print(df.head())
+# print(df.head())
 
 """
 #Practice understand
@@ -77,7 +77,6 @@ print(frequency_matrix)
 from sklearn.cross_validation import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 
-
 x_train, x_test, y_train, y_test = train_test_split(df['sms_message'],
                                                     df['label'],
                                                     random_state=1)
@@ -94,14 +93,14 @@ training_data = count_vector.fit_transform(x_train)
 # Transform testing data and return the matrix. Note we are not fitting the testing data into the CountVectorizer()
 testing_data = count_vector.transform(x_test)
 
-
 from sklearn.naive_bayes import MultinomialNB
+
 naive_bayes = MultinomialNB()
 print(naive_bayes.fit(training_data, y_train))
 predictions = naive_bayes.predict(testing_data)
 
-
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
 print('Accuracy score: ', format(accuracy_score(y_test, predictions)))
 print('Precision score: ', format(precision_score(y_test, predictions)))
 print('Recall score: ', format(recall_score(y_test, predictions)))
